@@ -74,5 +74,11 @@ namespace Module1
         {
             File.WriteAllText(fileName, MyNetwork.Serialization());
         }
+
+        private void BtnSimple_OnClick(object sender, RoutedEventArgs e)
+        {
+            MyNetwork = new Network("simple.net");
+            DrawNetwork();
+        }
     }
 }

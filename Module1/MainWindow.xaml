@@ -5,15 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Module1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="800">
     <Window.CommandBindings>
         <CommandBinding Command="Open" CanExecute="OpenCommand_CanExecute" Executed="OpenCommand_Executed" />
     </Window.CommandBindings>
-    <DockPanel>
-        <Grid>
-            <Button Content="hello"></Button>
-        </Grid>
-        <Menu DockPanel.Dock="Top">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Padding" Value="4"/>
+            </Style>
+        </Grid.Resources>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnSimple" Content="Simple" Click="BtnSimple_OnClick"/>
+            <Button Name="btn3nn" Content="3 Node Network"/>
+        </StackPanel>
+    
+        <Menu Grid.Row="1">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Command="Open" />
                 <Separator />
@@ -21,12 +39,12 @@
             </MenuItem>
         </Menu>
 
-        <Border BorderBrush="Black" BorderThickness="1" Margin="3">
+        <Border BorderBrush="Black" BorderThickness="1" Margin="3" Grid.Row="2">
             <ScrollViewer
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto">
                 <Canvas Name="mainCanvas"/>
             </ScrollViewer>
         </Border>
-    </DockPanel>
+    </Grid>
 </Window>
