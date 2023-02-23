@@ -32,6 +32,7 @@
             <Button Name="btnComplex" Content="Complex" Click="BtnComplex_OnClick"/>
             <Button Name="btnValidate" Content="Validate" Click="BtnValidate_OnClick"/>
             <TextBox Name="tbValidate" Width="112" Height="24" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+            <Button Name="btnRandom" Content="Random" Click="BtnRandom_OnClick"/>
         </StackPanel>
     
         <Menu Grid.Row="1">

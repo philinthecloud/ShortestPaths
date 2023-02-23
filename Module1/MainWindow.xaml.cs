@@ -101,5 +101,62 @@ namespace Module1
             else
                 tbValidate.Text = "Failed.";
         }
+
+        private Network BuildGridNetwork(string filename,
+            double width, double height, int numRows, int numCols)
+        {
+            Network randomNetwork = new Network();
+            double horizontalSpacing = (width) / (numCols - 1);
+            double verticalSpacing = (height) / (numRows - 1);
+            int numNodes = (numCols * numRows);
+            Random random = new Random(DateTime.Now.Millisecond);
+            List<Node> nodes = new List<Node>(numNodes);
+            List<Link> links = new List<Link>(numNodes * 2);
+
+            int nodeNum = 1;
+            for (int i = 0; i < numRows; i++)
+            {
+                for (int j = 0; j < numCols; j++)
+                {
+                    double nodeXCoord = 40.0 + (horizontalSpacing * j);
+                    double nodeYCoord = 40.0 + (verticalSpacing * i);
+                    
+                    nodes.Add(new Node(randomNetwork, new Point(nodeXCoord, nodeYCoord), (nodeNum++).ToString()));
+                }
+            }
+
+            for (int i = 0; i < numRows; i++)
+            {
+                for (int j = 0; j < numCols - 1; j++)
+                {
+                    int nodeIndexC = i * numCols + j;
+                    links.Add(new Link(randomNetwork, nodes[nodeIndexC], nodes[nodeIndexC + 1], random.Next(10, 13) / 10.0));
+                    links.Add(new Link(randomNetwork, nodes[nodeIndexC + 1], nodes[nodeIndexC], random.Next(10, 13) / 10.0));
+                }
+            }
+
+            for (int i = 0; i < numRows - 1; i++)
+            {
+                for (int j = 0; j < numCols; j++)
+                {
+                    int nodeIndexC = i * numCols + j;
+                    int nodeIndexR = ((i + 1) * numCols) + j;
+                    links.Add(new Link(randomNetwork, nodes[nodeIndexC], nodes[nodeIndexR], random.Next(10, 13) / 10.0));
+                    links.Add(new Link(randomNetwork, nodes[nodeIndexR], nodes[nodeIndexC], random.Next(10, 13) / 10.0));
+                }
+            }
+
+            randomNetwork.Nodes = nodes;
+            randomNetwork.Links = links;
+            MyNetwork = randomNetwork;
+            DrawNetwork();
+            SaveIntoFile(filename);
+            return randomNetwork;
+        }
+
+        private void BtnRandom_OnClick(object sender, RoutedEventArgs e)
+        {
+            BuildGridNetwork("random.net", 600.0, 400.0, 2, 2);
+        }
     }
 }
