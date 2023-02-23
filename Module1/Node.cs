@@ -54,6 +54,15 @@ public class Node
         Rect bounds = new Rect(Center.X - Radius, Center.Y - Radius,
             Diameter, Diameter);
 
+        //canvas.DrawRectangle(bounds, Brushes.BlueViolet, Brushes.BlueViolet, 1.0);
+
+        canvas.DrawLine(new Point(Center.X - Radius, Center.Y),
+            new Point(Center.X + Radius, Center.Y),
+            Brushes.DarkGreen, 1.0);
+        canvas.DrawLine(new Point(Center.X, Center.Y - Radius),
+            new Point(Center.X, Center.Y + Radius),
+            Brushes.DarkGreen, 1.0);
+
         canvas.DrawEllipse(bounds,
             Brushes.White,
             Brushes.Black,

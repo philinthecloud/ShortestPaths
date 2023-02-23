@@ -80,5 +80,26 @@ namespace Module1
             MyNetwork = new Network("simple.net");
             DrawNetwork();
         }
+
+        private void BtnBasic_OnClick(object sender, RoutedEventArgs e)
+        {
+            MyNetwork = new Network("basic.net");
+            DrawNetwork();
+        }
+
+        private void BtnComplex_OnClick(object sender, RoutedEventArgs e)
+        {
+            MyNetwork = new Network("complex.net");
+            DrawNetwork();
+        }
+
+        private void BtnValidate_OnClick(object sender, RoutedEventArgs e)
+        {
+            var valid = MyNetwork.ValidateNetwork(MyNetwork, "pip.net");
+            if (valid)
+                tbValidate.Text = "Passed.";
+            else
+                tbValidate.Text = "Failed.";
+        }
     }
 }

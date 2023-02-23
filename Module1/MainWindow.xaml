@@ -28,7 +28,10 @@
         
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button Name="btnSimple" Content="Simple" Click="BtnSimple_OnClick"/>
-            <Button Name="btn3nn" Content="3 Node Network"/>
+            <Button Name="btnBasic" Content="Basic" Click="BtnBasic_OnClick"/>
+            <Button Name="btnComplex" Content="Complex" Click="BtnComplex_OnClick"/>
+            <Button Name="btnValidate" Content="Validate" Click="BtnValidate_OnClick"/>
+            <TextBox Name="tbValidate" Width="112" Height="24" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
         </StackPanel>
     
         <Menu Grid.Row="1">

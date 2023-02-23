@@ -8,6 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Update="basic.net">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="complex.net">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="simple.net">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

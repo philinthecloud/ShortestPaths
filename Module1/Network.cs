@@ -70,10 +70,11 @@ public class Network
     {
         string line = reader.ReadLine();
 
-        while (String.IsNullOrEmpty(line))
+        while (String.IsNullOrEmpty(line) || line.StartsWith('#'))
         {
-            
+            line = reader.ReadLine();
         }
+        
         if (line.Contains('#'))
             line = line.Substring(0, line.IndexOf('#'));
 
@@ -130,10 +131,10 @@ public class Network
 
     private Rect GetBounds()
     {
-        double minX = Nodes.Select(n => n.Center.X).Min();
-        double minY = Nodes.Select(n => n.Center.Y).Min();
-        double maxX = Nodes.Select(n => n.Center.X).Max();
-        double maxY = Nodes.Select(n => n.Center.Y).Max();
+        double minX = Nodes.Select(n => n.Center.X).Min() - 10.0;
+        double minY = Nodes.Select(n => n.Center.Y).Min() - 10.0;
+        double maxX = Nodes.Select(n => n.Center.X).Max() + 10.0;
+        double maxY = Nodes.Select(n => n.Center.Y).Max() + 10.0;
 
         /*
         foreach (Node node in Nodes)
@@ -145,14 +146,14 @@ public class Network
         }
         */
 
-        return new Rect(new Point(minX - 10.0, minY - 10.0), new Point(maxX + 10.0, maxY + 10.0));
+        return new Rect(new Point(minX, minY), new Point(maxX, maxY));
     }
  
     public void Draw(Canvas canvas)
     {
         Rect bounds = GetBounds();
-        canvas.Width = bounds.Width;
-        canvas.Height = bounds.Height;
+        canvas.Width = 1000;
+        canvas.Height = 1000;
         canvas.ClipToBounds = true;
         canvas.DrawRectangle(bounds, Brushes.Transparent, Brushes.Orange, 2.0);
 
